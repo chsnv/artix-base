@@ -13,7 +13,7 @@ My personal, script-driven **Artix Linux (OpenRC)** setup — reproducible from 
 |---|---|---|
 | **1 — base** | `install.sh` → `src/installer.sh` + `src/iamchroot.sh` | partition, mount, basestrap, fstab, hosts, bootloader, user |
 | **2 — desktop** | `src/desktop.sh` | KDE Plasma + apps (`packages/desktop.txt`), PipeWire, enable services |
-| **3 — AUR** | _(todo)_ | bootstrap `yay` + `packages/aur.txt` |
+| **3 — AUR** | `src/aur.sh` | bootstrap `yay` + `packages/aur.txt` |
 | **4 — dotfiles** | _(todo)_ | zsh / oh-my-zsh + KDE config |
 
 ## Phase 1 — base (from the Artix live ISO)
@@ -43,6 +43,17 @@ Installs `packages/desktop.txt`, sets up PipeWire, and enables the services in
 > Some packages live in Arch's `extra`/`multilib`. If any are reported missing,
 > install `artix-archlinux-support` and enable `[lib32]` in `/etc/pacman.conf`,
 > then re-run.
+
+## Phase 3 — AUR (after the desktop)
+
+As your user (not root):
+```sh
+cd artix-base
+./src/aur.sh
+```
+Builds `yay` from the AUR (needs `go`, `base-devel`), then installs
+`packages/aur.txt` one by one. AUR packages compile from source — expect time;
+any that fail (e.g. missing PGP key) are listed at the end for manual fixing.
 
 ## Package lists
 
