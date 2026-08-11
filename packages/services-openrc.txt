@@ -1,0 +1,10 @@
+bluetoothd
+cupsd
+mariadb
+postgresql
+power-profiles-daemon
+sddm
+syslog-ng
+tailscaled
+ufw
+virtlogd
