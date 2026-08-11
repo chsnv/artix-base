@@ -1,72 +1,66 @@
 #!/bin/sh -e
 #
-# A simple installer for Artix Linux
+# artix-base — Phase 1: configuration inside the new root (via artix-chroot).
+# Copyright (c) 2025 Cosqun Hesenov.  MIT licensed (see LICENSE).
 #
-# Copyright (c) 2022 Maxwell Anderson
-#
-# This file is part of artix-installer.
-#
-# artix-installer is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# artix-installer is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with artix-installer. If not, see <https://www.gnu.org/licenses/>.
+# Env: INIT P2 FS CRYPT CRYPTPASS TZ HOST ROOTPASS LANGCODE KEYMAP USERNAME USERPASS
 
-# Boring stuff you should probably do
-ln -sf /usr/share/zoneinfo/"$REGION_CITY" /etc/localtime
+# --- clock ---
+ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
 hwclock --systohc
 
-# Localization
-printf "%s.UTF-8 UTF-8\n" "$LANGCODE" >>/etc/locale.gen
+# --- locale + console ---
+printf '%s.UTF-8 UTF-8\n' "$LANGCODE" >> /etc/locale.gen
 locale-gen
-printf "LANG=%s.UTF-8\n" "$LANGCODE" >/etc/locale.conf
-printf "KEYMAP=%s\n" "$MY_KEYMAP" >/etc/vconsole.conf
+printf 'LANG=%s.UTF-8\n' "$LANGCODE" > /etc/locale.conf
+printf 'KEYMAP=%s\n' "$KEYMAP" > /etc/vconsole.conf
 
-# Host stuff
-printf '%s\n' "$MY_HOSTNAME" >/etc/hostname
-[ "$MY_INIT" = "openrc" ] && printf 'hostname="%s"\n' "$MY_HOSTNAME" >/etc/conf.d/hostname
-printf "\n127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\t%s.localdomain\t%s\n" "$MY_HOSTNAME" "$MY_HOSTNAME" >/etc/hosts
+# --- hostname + hosts ---
+printf '%s\n' "$HOST" > /etc/hostname
+[ "$INIT" = openrc ] && printf 'hostname="%s"\n' "$HOST" > /etc/conf.d/hostname
+{
+	printf '127.0.0.1\tlocalhost\n'
+	printf '::1\t\tlocalhost\n'
+	printf '127.0.1.1\t%s.localdomain\t%s\n' "$HOST" "$HOST"
+} > /etc/hosts
 
-# Install boot loader
-root_uuid=$(blkid "$PART2" -o value -s UUID)
-
-if [ "$ENCRYPTED" = "y" ]; then
-	my_params="cryptdevice=UUID=$root_uuid:root root=\/dev\/mapper\/root"
+# --- bootloader (ESP at /boot/efi, /boot lives on btrfs @) ---
+if [ "$CRYPT" = y ]; then
+	uuid=$(blkid -s UUID -o value "$P2")
+	sed -i "s#^GRUB_CMDLINE_LINUX_DEFAULT=.*#GRUB_CMDLINE_LINUX_DEFAULT=\"cryptdevice=UUID=$uuid:root root=/dev/mapper/root\"#" /etc/default/grub
+	sed -i 's/^#\(GRUB_ENABLE_CRYPTODISK=y\)/\1/' /etc/default/grub
 fi
-
-sed -i "s/^GRUB_CMDLINE_LINUX_DEFAULT.*$/GRUB_CMDLINE_LINUX_DEFAULT=\"$my_params\"/g" /etc/default/grub
-[ "$ENCRYPTED" = "y" ] && sed -i '/GRUB_ENABLE_CRYPTODISK=y/s/^#//g' /etc/default/grub
-
-grub-install --target=x86_64-efi --efi-directory=/boot --recheck
-grub-install --target=x86_64-efi --efi-directory=/boot --removable --recheck
+if grep -q '^GRUB_DISABLE_OS_PROBER' /etc/default/grub; then
+	sed -i 's/^GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
+else
+	printf 'GRUB_DISABLE_OS_PROBER=false\n' >> /etc/default/grub
+fi
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=artix --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Root user
-yes "$ROOT_PASSWORD" | passwd
-
-sed -i '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
-
-# Other stuff you should do
-if [ "$MY_INIT" = "openrc" ]; then
-	sed -i '/rc_need="localmount"/s/^#//g' /etc/conf.d/swap
-	rc-update add connmand default
-elif [ "$MY_INIT" = "dinit" ]; then
-	ln -s /etc/dinit.d/connmand /etc/dinit.d/boot.d/
+# --- accounts ---
+printf 'root:%s\n' "$ROOTPASS" | chpasswd
+sed -i 's/^#[[:space:]]*\(%wheel ALL=(ALL\(:ALL\)\{0,1\}) ALL\)/\1/' /etc/sudoers
+if [ "$USERNAME" ]; then
+	useradd -m -G wheel -s /bin/bash "$USERNAME"
+	printf '%s:%s\n' "$USERNAME" "$USERPASS" | chpasswd
 fi
 
-# Configure mkinitcpio
-[ "$MY_FS" = "btrfs" ] && sed -i 's/BINARIES=()/BINARIES=(\/usr\/bin\/btrfs)/g' /etc/mkinitcpio.conf
-if [ "$ENCRYPTED" = "y" ]; then
-	sed -i 's/^HOOKS.*$/HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)/g' /etc/mkinitcpio.conf
+# --- core services (NetworkManager needs dbus) ---
+if [ "$INIT" = openrc ]; then
+	rc-update add dbus default
+	rc-update add NetworkManager default
+elif [ "$INIT" = dinit ]; then
+	ln -sf /etc/dinit.d/dbus /etc/dinit.d/boot.d/
+	ln -sf /etc/dinit.d/NetworkManager /etc/dinit.d/boot.d/
+fi
+
+# --- initramfs ---
+[ "$FS" = btrfs ] && sed -i 's#^BINARIES=.*#BINARIES=(/usr/bin/btrfs)#' /etc/mkinitcpio.conf
+if [ "$CRYPT" = y ]; then
+	sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)/' /etc/mkinitcpio.conf
 else
-	sed -i 's/^HOOKS.*$/HOOKS=(base udev autodetect keyboard keymap modconf block filesystems fsck)/g' /etc/mkinitcpio.conf
+	sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect keyboard keymap modconf block filesystems fsck)/' /etc/mkinitcpio.conf
 fi
-
 mkinitcpio -P

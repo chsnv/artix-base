@@ -1,32 +1,56 @@
-# artix-installer
+# artix-base
 
 ![](https://img.shields.io/badge/OS-Artix%20Linux-blue?logo=Artix+Linux)
 
-A simple installer for Artix Linux. Supports OpenRC and dinit.
+My personal, script-driven **Artix Linux (OpenRC)** setup — reproducible from scratch.
 
-## Usage
+**Layout:** btrfs `@` / `@home` / `@var` · NetworkManager · GRUB (ESP at `/boot/efi`) ·
+`linux-zen` + `linux-lts` · KDE Plasma · PipeWire.
 
-1. Boot into the Artix live disk (the login and password are both `artix`).
-2. Connect to the internet. Ethernet is setup automatically, and wifi is done with something like:
+## Phases
+
+| Phase | Script | What |
+|---|---|---|
+| **1 — base** | `install.sh` → `src/installer.sh` + `src/iamchroot.sh` | partition, mount, basestrap, fstab, hosts, bootloader, user |
+| **2 — desktop** | `src/desktop.sh` | KDE Plasma + apps (`packages/desktop.txt`), PipeWire, enable services |
+| **3 — AUR** | _(todo)_ | bootstrap `yay` + `packages/aur.txt` |
+| **4 — dotfiles** | _(todo)_ | zsh / oh-my-zsh + KDE config |
+
+## Phase 1 — base (from the Artix live ISO)
+
+1. Boot the Artix **OpenRC** live ISO (user & password: `artix`).
+2. Get online — Ethernet is automatic; Wi‑Fi via `connmanctl` or `nmcli`.
+3. Clone and run:
+   ```sh
+   git clone https://github.com/chsnv/artix-base.git
+   cd artix-base
+   ./install.sh
+   ```
+4. `poweroff`, remove the ISO, boot into the installed system.
+
+ESP size and btrfs mount options are variables at the top of `src/installer.sh`.
+
+## Phase 2 — desktop (after first boot)
+
+Log in as your user, then:
+```sh
+cd artix-base
+./src/desktop.sh
 ```
-sudo rfkill unblock wifi
-sudo ip link set wlan0 up
-connmanctl
-```
-In Connman, use: `agent on`, `scan wifi`, `services`, `connect wifi_NAME`, `quit`
+Installs `packages/desktop.txt`, sets up PipeWire, and enables the services in
+`packages/services-openrc.txt` (sddm, cupsd, …). Reboot into Plasma.
 
-3. Acquire the install scripts:
-```
-curl -OL https://github.com/Zaechus/artix-installer/archive/v2.2.0.tar.gz
-tar xzf v2.2.0.tar.gz
-cd artix-installer-2.2.0
-```
-4. Run `./install.sh`.
-5. When everything finishes, `poweroff`, remove the installation media, and boot into Artix. Post-installation networking is done with Connman.
+> Some packages live in Arch's `extra`/`multilib`. If any are reported missing,
+> install `artix-archlinux-support` and enable `[lib32]` in `/etc/pacman.conf`,
+> then re-run.
 
-### Preinstallation
+## Package lists
 
-* ISO downloads can be found at [artixlinux.org](https://artixlinux.org/download.php)
-* ISO files can be burned to drives with `dd` or something like Etcher.
-* `sudo dd bs=4M if=/path/to/artix.iso of=/dev/sd[drive letter] status=progress`
-* A better method these days is to use [Ventoy](https://www.ventoy.net/en/index.html).
+Generated from the real machine:
+- `packages/desktop.txt` — explicit repo packages (`pacman -Qqen`, minus the base set)
+- `packages/aur.txt` — explicit AUR/foreign packages (`pacman -Qqem`)
+- `packages/services-openrc.txt` — enabled OpenRC services (default runlevel)
+
+## License
+
+MIT © 2025 Cosqun Hesenov — see [LICENSE](LICENSE).

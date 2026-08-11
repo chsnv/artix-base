@@ -1,130 +1,81 @@
 #!/bin/sh -e
 #
-# A simple installer for Artix Linux
+# artix-base — Phase 1 front-end: gather parameters, then partition + configure.
+# Copyright (c) 2025 Cosqun Hesenov.  MIT licensed (see LICENSE).
 #
-# Copyright (c) 2022 Maxwell Anderson
-#
-# This file is part of artix-installer.
-#
-# artix-installer is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# artix-installer is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with artix-installer. If not, see <https://www.gnu.org/licenses/>.
+# Run from the Artix live ISO as the live user (uses sudo internally).
 
-confirm_password() {
-	stty -echo
-	until [ "$pass1" = "$pass2" ] && [ "$pass2" ]; do
-		printf "%s: " "$1" >&2 && read -r pass1 && printf "\n" >&2
-		printf "confirm %s: " "$1" >&2 && read -r pass2 && printf "\n" >&2
-	done
-	stty echo
-	echo "$pass2"
+die() { printf '\033[31m%s\033[0m\n' "$*" >&2; exit 1; }
+
+ask() {  # ask "prompt" "default"  -> echoes the answer
+	_prompt="$1"; _def="$2"; _ans=""
+	[ "$_def" ] && _prompt="$_prompt [$_def]"
+	printf '%s: ' "$_prompt" >&2
+	read -r _ans
+	[ "$_ans" ] || _ans="$_def"
+	printf '%s' "$_ans"
 }
 
-# Load keymap
-until grep -q "^#*$LANGCODE\.UTF-8 UTF-8  $" /etc/locale.gen; do
-	printf "Language (en_US, de_DE, etc.): " && read -r LANGCODE
-	[ ! "$LANGCODE" ] && LANGCODE="en_US"
-done
+ask_secret() {  # ask_secret "label"  -> echoes a confirmed password (no echo)
+	_label="$1"; _a=x; _b=y
+	stty -echo
+	while [ "$_a" != "$_b" ] || [ -z "$_a" ]; do
+		printf '%s: ' "$_label" >&2;        read -r _a; printf '\n' >&2
+		printf 'repeat %s: ' "$_label" >&2; read -r _b; printf '\n' >&2
+	done
+	stty echo
+	printf '%s' "$_a"
+}
+
+[ -d /sys/firmware/efi ] || die "UEFI rejimi tapılmadı. Dayanıldı."
+
+INIT=$(ask "Init sistemi (openrc/dinit)" "openrc")
+
+LANGCODE=$(ask "Locale (en_US, az_AZ, ...)" "en_US")
 case "$LANGCODE" in
-"az_AZ")
-	MY_KEYMAP="az"
-	;;
-"en_US")
-	MY_KEYMAP="us"
-	;;
-*)
-	MY_KEYMAP=$(echo "$LANGCODE" | cut -c1-2)
-	;;
+	az_AZ) KEYMAP=az ;;
+	en_US) KEYMAP=us ;;
+	*)     KEYMAP=$(printf '%s' "$LANGCODE" | cut -c1-2) ;;
 esac
-sudo loadkeys "$MY_KEYMAP"
+sudo loadkeys "$KEYMAP" 2>/dev/null || true
 
-# Check boot mode
-[ ! -d /sys/firmware/efi ] && printf "Not booted in UEFI mode. Aborting..." && exit 1
-
-# Choose MY_INIT
-until [ "$MY_INIT" = "openrc" ] || [ "$MY_INIT" = "dinit" ]; do
-	printf "Init system (openrc/dinit): " && read -r MY_INIT
-	[ ! "$MY_INIT" ] && MY_INIT="openrc"
-done
-
-# Choose disk
-until [ -b "$MY_DISK" ]; do
-	echo
-	sudo fdisk -l
-	printf "\nWarning: the selected disk will be rewritten.\n"
-	printf "\nDisk to install to (e.g. /dev/sda): " && read -r MY_DISK
-done
-
-PART1="$MY_DISK"1
-PART2="$MY_DISK"2
-case "$MY_DISK" in
-*"nvme"* | *"mmcblk"*)
-	PART1="$MY_DISK"p1
-	PART2="$MY_DISK"p2
-	;;
+printf '\n'; lsblk -dpno NAME,SIZE,MODEL; printf '\n'
+printf '\033[33mSeçilən disk TAMAMİLƏ silinəcək.\033[0m\n'
+DISK=""
+while [ ! -b "$DISK" ]; do DISK=$(ask "Hədəf disk (məs /dev/nvme0n1)" ""); done
+case "$DISK" in
+	*nvme*|*mmcblk*) P1="${DISK}p1"; P2="${DISK}p2" ;;
+	*)               P1="${DISK}1";  P2="${DISK}2"  ;;
 esac
 
-# Swap size
-until (echo "$SWAP_SIZE" | grep -Eq "^[0-9]+$") && [ "$SWAP_SIZE" -gt 0 ] && [ "$SWAP_SIZE" -lt 97 ]; do
-	printf "Size of swap partition in GiB (4): " && read -r SWAP_SIZE
-	[ ! "$SWAP_SIZE" ] && SWAP_SIZE=4
-done
-
-# Choose filesystem
-until [ "$MY_FS" = "btrfs" ] || [ "$MY_FS" = "ext4" ]; do
-	printf "Filesystem (btrfs/ext4): " && read -r MY_FS
-	[ ! "$MY_FS" ] && MY_FS="btrfs"
-done
-
-# Encrypt or not
-until [ "$ENCRYPTED" ]; do
-	printf "Encrypt? (y/N): " && read -r ENCRYPTED
-	[ ! "$ENCRYPTED" ] && ENCRYPTED="n"
-done
-
-if [ "$ENCRYPTED" = "y" ]; then
-	MY_ROOT="/dev/mapper/root"
-	CRYPTPASS=$(confirm_password "encryption password")
+FS=$(ask "Fayl sistemi (btrfs/ext4)" "btrfs")
+SWAP=$(ask "Swap ölçüsü GiB (0 = yox)" "0")
+CRYPT=$(ask "Diski şifrələ? (y/N)" "n")
+if [ "$CRYPT" = y ]; then
+	ROOT=/dev/mapper/root
+	CRYPTPASS=$(ask_secret "disk şifrəsi")
 else
-	MY_ROOT=$PART2
-	[ "$MY_FS" = "ext4" ] && MY_ROOT=$PART2
+	ROOT="$P2"
 fi
 
-# Timezone
-until [ -f /usr/share/zoneinfo/"$REGION_CITY" ]; do
-	printf "Region/City (e.g. 'America/Denver'): " && read -r REGION_CITY
-	[ ! "$REGION_CITY" ] && REGION_CITY="America/Denver"
-done
+TZ=$(ask "Zaman zonası" "Asia/Baku")
+[ -f "/usr/share/zoneinfo/$TZ" ] || die "Zaman zonası tapılmadı: $TZ"
+HOST=$(ask "Hostname" "artix")
+ROOTPASS=$(ask_secret "root parolu")
+USERNAME=$(ask "İstifadəçi adı (boş = yaratma)" "")
+[ "$USERNAME" ] && USERPASS=$(ask_secret "$USERNAME parolu")
 
-# Host
-until [ "$MY_HOSTNAME" ]; do
-	printf "Hostname: " && read -r MY_HOSTNAME
-done
+printf '\nQuraşdırma başlayır...\n\n'
 
-# Users
-ROOT_PASSWORD=$(confirm_password "root password")
+sudo INIT="$INIT" DISK="$DISK" P1="$P1" P2="$P2" FS="$FS" SWAP="$SWAP" \
+	CRYPT="$CRYPT" ROOT="$ROOT" CRYPTPASS="$CRYPTPASS" \
+	sh ./src/installer.sh
 
-printf "\nDone with configuration. Installing...\n\n"
+sudo cp src/iamchroot.sh /mnt/root/iamchroot.sh
+sudo INIT="$INIT" P2="$P2" FS="$FS" CRYPT="$CRYPT" CRYPTPASS="$CRYPTPASS" \
+	TZ="$TZ" HOST="$HOST" ROOTPASS="$ROOTPASS" LANGCODE="$LANGCODE" KEYMAP="$KEYMAP" \
+	USERNAME="$USERNAME" USERPASS="$USERPASS" \
+	artix-chroot /mnt sh -ec 'sh /root/iamchroot.sh; rm -f /root/iamchroot.sh'
 
-# Install
-sudo MY_INIT="$MY_INIT" MY_DISK="$MY_DISK" PART1="$PART1" PART2="$PART2" \
-	SWAP_SIZE="$SWAP_SIZE" MY_FS="$MY_FS" ENCRYPTED="$ENCRYPTED" MY_ROOT="$MY_ROOT" \
-	CRYPTPASS="$CRYPTPASS" \
-	./src/installer.sh
-
-# Chroot
-sudo cp src/iamchroot.sh /mnt/root/ &&
-	sudo MY_INIT="$MY_INIT" PART2="$PART2" MY_FS="$MY_FS" ENCRYPTED="$ENCRYPTED" \
-		REGION_CITY="$REGION_CITY" MY_HOSTNAME="$MY_HOSTNAME" CRYPTPASS="$CRYPTPASS" \
-		ROOT_PASSWORD="$ROOT_PASSWORD" LANGCODE="$LANGCODE" MY_KEYMAP="$MY_KEYMAP" \
-		artix-chroot /mnt sh -ec './root/iamchroot.sh; rm /root/iamchroot.sh; exit' &&
-	printf '\nYou may now poweroff.\n'
+printf '\n\033[32mFaza 1 bitdi.\033[0m  poweroff → ISO-nu çıxart → sistemə aç.\n'
+printf 'Sonra Faza 2 üçün: cd artix-base && ./src/desktop.sh\n'
