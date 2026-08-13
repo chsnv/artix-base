@@ -9,8 +9,10 @@
 ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
 hwclock --systohc
 
-# --- locale + console ---
-printf '%s.UTF-8 UTF-8\n' "$LANGCODE" >> /etc/locale.gen
+# --- locale + console (chosen locale + az_AZ, matching the manual note) ---
+for loc in "$LANGCODE.UTF-8 UTF-8" "az_AZ UTF-8"; do
+	grep -qxF "$loc" /etc/locale.gen 2>/dev/null || printf '%s\n' "$loc" >> /etc/locale.gen
+done
 locale-gen
 printf 'LANG=%s.UTF-8\n' "$LANGCODE" > /etc/locale.conf
 printf 'KEYMAP=%s\n' "$KEYMAP" > /etc/vconsole.conf
@@ -51,13 +53,18 @@ fi
 if [ "$INIT" = openrc ]; then
 	rc-update add dbus default
 	rc-update add NetworkManager default
+	rc-update add sshd default
 elif [ "$INIT" = dinit ]; then
 	ln -sf /etc/dinit.d/dbus /etc/dinit.d/boot.d/
 	ln -sf /etc/dinit.d/NetworkManager /etc/dinit.d/boot.d/
+	ln -sf /etc/dinit.d/sshd /etc/dinit.d/boot.d/
 fi
 
 # --- initramfs ---
-[ "$FS" = btrfs ] && sed -i 's#^BINARIES=.*#BINARIES=(/usr/bin/btrfs)#' /etc/mkinitcpio.conf
+if [ "$FS" = btrfs ]; then
+	sed -i 's#^MODULES=.*#MODULES=(btrfs)#' /etc/mkinitcpio.conf
+	sed -i 's#^BINARIES=.*#BINARIES=(/usr/bin/btrfs)#' /etc/mkinitcpio.conf
+fi
 if [ "$CRYPT" = y ]; then
 	sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect keyboard keymap modconf block encrypt filesystems fsck)/' /etc/mkinitcpio.conf
 else

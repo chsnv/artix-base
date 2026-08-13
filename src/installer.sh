@@ -8,7 +8,7 @@
 # Env from install.sh:  INIT DISK P1 P2 FS SWAP CRYPT ROOT CRYPTPASS
 
 BTRFS_OPTS="noatime,compress=zstd,ssd,discard=async,space_cache=v2"
-ESP_SIZE="512MiB"
+ESP_SIZE="200MiB"   # matches your real ESP; /boot lives on btrfs @, ESP only holds grubx64.efi
 
 # --- base package set (NetworkManager audio-less; PipeWire comes in Phase 2) ---
 pkgs="base base-devel $INIT elogind-$INIT \

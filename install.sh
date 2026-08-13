@@ -62,7 +62,7 @@ TZ=$(ask "Zaman zonası" "Asia/Baku")
 [ -f "/usr/share/zoneinfo/$TZ" ] || die "Zaman zonası tapılmadı: $TZ"
 HOST=$(ask "Hostname" "artix")
 ROOTPASS=$(ask_secret "root parolu")
-USERNAME=$(ask "İstifadəçi adı (boş = yaratma)" "")
+USERNAME=$(ask "İstifadəçi adı (boş = yaratma)" "chsnv")
 [ "$USERNAME" ] && USERPASS=$(ask_secret "$USERNAME parolu")
 
 printf '\nQuraşdırma başlayır...\n\n'
