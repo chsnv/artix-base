@@ -15,6 +15,7 @@ My personal, script-driven **Artix Linux (OpenRC)** setup — reproducible from 
 | **2 — desktop** | `src/desktop.sh` | KDE Plasma + apps (`packages/desktop.txt`), PipeWire, enable services |
 | **3 — AUR** | `src/aur.sh` | bootstrap `yay` + `packages/aur.txt` |
 | **4 — dotfiles** | `src/dotfiles.sh` | zsh + KDE config (secrets scrubbed) |
+| **5 — snapshots** | `src/snapshots.sh` | snapper + snap-pac + grub-btrfs (OpenRC) |
 
 ## Phase 1 — base (from the Artix live ISO)
 
@@ -65,6 +66,21 @@ Tracked paths are listed in `packages/dotfiles.list` (curated, safe). This repo 
 **public**, so capture scrubs anything secret-looking and refuses to keep the result
 if a real secret survives. Put real secrets in `~/.zshrc.local` (gitignored) — see
 `dotfiles/.zshrc.local.example`.
+
+## Phase 5 — snapshots (after the desktop)
+
+As your user (not root):
+```sh
+./src/snapshots.sh
+```
+Creates a dedicated `@snapshots` subvolume mounted at `/.snapshots`, a snapper
+`root` config, automatic pre/post snapshots on every `pacman` transaction
+(`snap-pac`), and the GRUB snapshot submenu. Because OpenRC ships none of
+snapper's systemd timers, it also installs an OpenRC `grub-btrfsd` service
+(the Artix package provides only the binary) and an hourly cron cleanup.
+
+Reboot → pick **Artix snapshots** in GRUB to boot a snapshot; roll back with
+`sudo snapper rollback` then reboot.
 
 ## Package lists
 

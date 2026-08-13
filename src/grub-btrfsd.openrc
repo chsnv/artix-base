@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+# grub-btrfsd — watch snapper's /.snapshots and refresh the GRUB submenu.
+#
+# Artix's grub-btrfs package ships only /usr/bin/grub-btrfsd (the upstream
+# systemd unit is stripped, with no OpenRC replacement). This is that missing
+# service. Installed to /etc/init.d/grub-btrfsd by src/snapshots.sh.
+
+description="grub-btrfs snapshot daemon"
+command="/usr/bin/grub-btrfsd"
+command_args="--syslog /.snapshots"
+command_background="yes"
+pidfile="/run/${RC_SVCNAME}.pid"
+output_log="/var/log/grub-btrfsd.log"
+error_log="/var/log/grub-btrfsd.log"
+
+depend() {
+	need localmount
+	after bootmisc
+}
