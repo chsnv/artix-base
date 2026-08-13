@@ -1,0 +1,99 @@
+[ColorPicker]
+HexLengths=3,6,9,12
+NamedColors=false
+PreviewAfterColor=true
+
+[General]
+Allow Tab Scrolling=true
+Auto Hide Tabs=false
+Close After Last=false
+Close documents with window=true
+Cycle To First Tab=true
+Days Meta Infos=30
+Diagnostics Limit=12000
+Diff Show Style=0
+Elide Tab Text=false
+Enable Context ToolView=false
+Expand Tabs=false
+Icon size for left and right sidebar buttons=32
+Modified Notification=false
+Mouse back button action=0
+Mouse forward button action=0
+Open New Tab To The Right Of Current=false
+Output History Limit=100
+Output With Date=false
+PinnedDocuments=
+Quickopen Filter Mode=0
+Quickopen List Mode=true
+Recent File List Entry Count=10
+Restore Window Configuration=true
+SDI Mode=false
+Save Meta Infos=true
+Show Full Path in Title=false
+Show Menu Bar=true
+Show Status Bar=true
+Show Symbol In Navigation Bar=true
+Show Tab Bar=true
+Show Tabs Close Button=true
+Show Url Nav Bar=true
+Show output view for message type=1
+Show text for left and right sidebar=false
+Show welcome view for new window=true
+Startup Session=manual
+Stash new unsaved files=true
+Stash unsaved file changes=false
+Sync section size with tab positions=false
+Tab Double Click New Document=true
+Tab Middle Click Close Document=true
+Tabbar Tab Limit=0
+
+[Konsole]
+AutoSyncronizeMode=0
+KonsoleEscKeyBehaviour=true
+KonsoleEscKeyExceptions=vi,vim,nvim,git
+RemoveExtension=false
+RunPrefix=
+SetEditor=false
+
+[MainWindow]
+1920x1200 screen: Height=1159
+1920x1200 screen: Width=953
+
+[Notification Messages]
+ApplicationLanguageChangedWarning=false
+
+[filetree]
+editShade=30,78,103
+listMode=false
+middleClickToClose=false
+shadingEnabled=true
+showCloseButton=false
+showFullPathOnRoots=false
+showToolbar=true
+sortRole=0
+viewShade=77,46,91
+
+[lspclient]
+AllowedServerCommandLines=/usr/bin/clangd -log=error --background-index --limit-results=500 --completion-style=bundled,/usr/bin/marksman server
+AutoHover=true
+AutoImport=true
+BlockedServerCommandLines=
+CompletionDocumentation=true
+CompletionParens=true
+Diagnostics=true
+FormatOnSave=false
+HighlightGoto=true
+HighlightSymbol=true
+IncrementalSync=false
+InlayHints=false
+Messages=true
+ReferencesDeclaration=true
+SemanticHighlighting=true
+ServerConfiguration=
+ShowCompletions=true
+SignatureHelp=true
+SymbolDetails=false
+SymbolExpand=true
+SymbolSort=false
+SymbolTree=true
+TypeFormatting=false

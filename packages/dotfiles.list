@@ -1,0 +1,35 @@
+# Dotfiles tracked by Phase 4 (paths relative to $HOME).
+# Only safe, portable configs. Secrets are scrubbed on capture; real secrets
+# live in ~/.zshrc.local (gitignored). Histories/caches/keys are NEVER listed.
+
+# --- shell / tools ---
+.zshrc
+.bashrc
+.bash_profile
+.bash_logout
+.gitconfig
+.fonts.conf
+.gtkrc-2.0
+
+# --- KDE Plasma (curated, no device certs / wallet) ---
+.config/kdeglobals
+.config/kwinrc
+.config/kwinrulesrc
+.config/kglobalshortcutsrc
+.config/kxkbrc
+.config/kcminputrc
+.config/dolphinrc
+.config/konsolerc
+.config/katerc
+.config/ksmserverrc
+.config/kscreenlockerrc
+.config/ksplashrc
+.config/plasmarc
+.config/plasmashellrc
+.config/plasma-org.kde.plasma.desktop-appletsrc
+.config/plasma-localerc
+.config/plasmanotifyrc
+.config/plasmaparc
+.config/powerdevilrc
+.config/powermanagementprofilesrc
+.config/Trolltech.conf

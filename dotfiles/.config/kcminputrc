@@ -1,0 +1,12 @@
+[Libinput][13437][30784][BLTP7840:00 347D:7840 Touchpad]
+DisableWhileTyping=false
+NaturalScroll=true
+
+[Libinput][13652][64522][Lenovo Lenovo Services N230 Mouse]
+PointerAccelerationProfile=2
+ScrollMethod=4
+
+[Mouse]
+X11LibInputXAccelProfileFlat=true
+cursorSize=36
+cursorTheme=capitaine-cursors-light

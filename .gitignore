@@ -1,0 +1,13 @@
+# Never commit real secrets — these hold them; keep them local only.
+.zshrc.local
+.bashrc.local
+*.local.sh
+dotfiles/.zshrc.local
+
+# Key / credential material (belt-and-suspenders)
+id_rsa*
+id_ed25519*
+*.pem
+*.key
+*.gpg
+.dotfiles-backup/

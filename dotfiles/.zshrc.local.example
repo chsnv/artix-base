@@ -1,0 +1,3 @@
+# Copy to ~/.zshrc.local and fill in real values. Gitignored — never commit.
+export DONTFORGET_SECRET_KEY=
+export SSHPASS=

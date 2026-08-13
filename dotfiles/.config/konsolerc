@@ -1,0 +1,19 @@
+MenuBar=Disabled
+
+[Desktop Entry]
+DefaultProfile=chsnv.profile
+
+[General]
+ConfigVersion=1
+
+[MainWindow]
+ToolBarsMovable=Enabled
+
+[Notification Messages]
+CloseAllTabs=true
+
+[TabBar]
+CloseTabButton=None
+
+[UiSettings]
+ColorScheme=

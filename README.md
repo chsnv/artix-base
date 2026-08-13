@@ -14,7 +14,7 @@ My personal, script-driven **Artix Linux (OpenRC)** setup — reproducible from 
 | **1 — base** | `install.sh` → `src/installer.sh` + `src/iamchroot.sh` | partition, mount, basestrap, fstab, hosts, bootloader, user |
 | **2 — desktop** | `src/desktop.sh` | KDE Plasma + apps (`packages/desktop.txt`), PipeWire, enable services |
 | **3 — AUR** | `src/aur.sh` | bootstrap `yay` + `packages/aur.txt` |
-| **4 — dotfiles** | _(todo)_ | zsh / oh-my-zsh + KDE config |
+| **4 — dotfiles** | `src/dotfiles.sh` | zsh + KDE config (secrets scrubbed) |
 
 ## Phase 1 — base (from the Artix live ISO)
 
@@ -54,6 +54,17 @@ cd artix-base
 Builds `yay` from the AUR (needs `go`, `base-devel`), then installs
 `packages/aur.txt` one by one. AUR packages compile from source — expect time;
 any that fail (e.g. missing PGP key) are listed at the end for manual fixing.
+
+## Phase 4 — dotfiles
+
+```sh
+./src/dotfiles.sh capture   # $HOME -> dotfiles/  (redacts secrets, then verifies)
+./src/dotfiles.sh restore   # dotfiles/ -> $HOME  (backs up what it overwrites)
+```
+Tracked paths are listed in `packages/dotfiles.list` (curated, safe). This repo is
+**public**, so capture scrubs anything secret-looking and refuses to keep the result
+if a real secret survives. Put real secrets in `~/.zshrc.local` (gitignored) — see
+`dotfiles/.zshrc.local.example`.
 
 ## Package lists
 

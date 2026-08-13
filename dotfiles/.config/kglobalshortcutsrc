@@ -1,0 +1,351 @@
+[ActivityManager]
+_k_friendly_name=İş otağı meneceri
+switch-to-activity-94a981d3-41bb-4028-b7c0-65cf1ab08a07=none,none,"Default" otağına keçin
+
+[KDE Keyboard Layout Switcher]
+Switch keyboard layout to Azerbaijani=none,none,Switch keyboard layout to Azerbaijani
+Switch keyboard layout to Azərbaycanca=none,none,Klaviatura qatını Azərbaycanca çevirmək
+Switch keyboard layout to English (US)=none,none,Klaviatura qatını English (US) çevirmək
+Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,Sonuncu istifadə olunmuş klaviatura qatına keçid
+Switch to Next Keyboard Layout=Meta+Space,Meta+Alt+K,Növbəti klaviatura qatını seçin
+_k_friendly_name=Klaviatura qatı dəyişdiricisi
+
+[claude-desktop]
+E6BC99664DC13C9CE92770F5C3EF4519-Ctrl+Alt+Space=Ctrl+Alt+Space,Ctrl+Alt+Space,Claude shortcut: Ctrl+Alt+Space
+_k_friendly_name=Claude
+
+[kaccess]
+Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Ekranı oxumaq funksiyasını işə salmaq/söndürmək
+_k_friendly_name=Xüsusi imkanlar
+
+[kmix]
+_k_friendly_name=Audio Volume
+decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decrease Microphone Volume
+decrease_volume=Volume Down,Volume Down,Decrease Volume
+decrease_volume_small=Shift+Volume Down,Shift+Volume Down,Decrease Volume by 1%
+increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Increase Microphone Volume
+increase_volume=Volume Up,Volume Up,Increase Volume
+increase_volume_small=Shift+Volume Up,Shift+Volume Up,Increase Volume by 1%
+mic_mute=Microphone Mute\tMeta+Volume Mute,Microphone Mute\tMeta+Volume Mute,Mute Microphone
+mute=Volume Mute,Volume Mute,Susdurmaq
+push_to_talk=none,none,Push to talk
+
+[ksmserver]
+Halt Without Confirmation=none,none,Təsdiqləmədən söndürmək
+Lock Session=Screensaver\tMeta+L,Screensaver\tMeta+L,Sessiyanı kilidləyin
+Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Çıxış ekranını göstərmək
+Log Out Without Confirmation=none,none,Təsdiqləmədən ssessiyadan çıxış
+LogOut=none,none,Sessiyadan çıxış
+Reboot=none,none,Yenidən başlatmaq
+Reboot Without Confirmation=none,none,Təsdiqləmədən yenidən başlatmaq
+Shut Down=none,none,Söndürmək
+_k_friendly_name=Sessiyaların idarə edilməsi
+
+[kwin]
+Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Pəncərəyə Diqqət Yetirilməsini Aktivləşdirmək
+Cycle Overview=none,none,Cycle through Overview and Grid View
+Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
+Decrease Opacity=none,none,Decrease Opacity of Active Window by 5%
+Edit Tiles=Meta+T,Meta+T,Toggle Tiles Editor
+Expose=Ctrl+F9,Ctrl+F9\tMeta+F9,Cari İş masasının bütün pəncərələrini göstərmək
+ExposeAll=Launch (C)\tCtrl+F10,Launch (C)\tCtrl+F10\tMeta+F10,Toggle Present Windows (All desktops)
+ExposeClass=Ctrl+F7,Ctrl+F7\tMeta+F7,Tək sinifə aid pəncərəni göstərmək
+ExposeClassCurrentDesktop=none,none,"Pəncərələrə baxış"ı aktiv edin və ya söndürün (cari iş masasındakı pəncərə sinfi)
+Grid View=Meta+G,Meta+G,Toggle Grid View
+Increase Opacity=none,none,Increase Opacity of Active Window by 5%
+Kill Window=Meta+Ctrl+Esc,Meta+Ctrl+Esc,Pəncərəni Ləğv etmək
+KrohnkiteBTreeLayout=none,none,Krohnkite: BTree Layout
+KrohnkiteColumnsLayout=none,none,Krohnkite: Columns Layout
+KrohnkiteDecrease=none,none,Krohnkite: Decrease
+KrohnkiteFloatAll=Meta+Shift+F,none,Krohnkite: Toggle Float All
+KrohnkiteFloatingLayout=none,none,Krohnkite: Floating Layout
+KrohnkiteFocusDown=Meta+J,none,Krohnkite: Focus Down
+KrohnkiteFocusLeft=Meta+H,none,Krohnkite: Focus Left
+KrohnkiteFocusNext=none,none,Krohnkite: Focus Next
+KrohnkiteFocusPrev=Meta+\\,,none,Krohnkite: Focus Previous
+KrohnkiteFocusRight=none,none,Krohnkite: Focus Right
+KrohnkiteFocusUp=Meta+K,none,Krohnkite: Focus Up
+KrohnkiteGrowHeight=Meta+Ctrl+J,none,Krohnkite: Grow Height
+KrohnkiteIncrease=Meta+I,none,Krohnkite: Increase
+KrohnkiteLowerSurfaceCapacity=none,none,Krohnkite: Lower Surface Capacity
+KrohnkiteMeta=none,none,Krohnkite: Meta Key
+KrohnkiteMonocleLayout=Meta+M,none,Krohnkite: Monocle Layout
+KrohnkiteNextLayout=Meta+\\\\,none,Krohnkite: Next Layout
+KrohnkitePreviousLayout=Meta+|,none,Krohnkite: Previous Layout
+KrohnkiteQuarterLayout=none,none,Krohnkite: Quarter Layout
+KrohnkiteRaiseSurfaceCapacity=none,none,Krohnkite: Raise Surface Capacity
+KrohnkiteRotate=none,none,Krohnkite: Rotate
+KrohnkiteRotatePart=none,none,Krohnkite: Rotate Part
+KrohnkiteSetMaster=none,none,Krohnkite: Set master
+KrohnkiteShiftDown=Meta+Shift+J,none,Krohnkite: Move Down/Next
+KrohnkiteShiftLeft=Meta+Shift+H,none,Krohnkite: Move Left
+KrohnkiteShiftRight=Meta+Shift+L,none,Krohnkite: Move Right
+KrohnkiteShiftUp=Meta+Shift+K,none,Krohnkite: Move Up/Prev
+KrohnkiteShrinkHeight=Meta+Ctrl+K,none,Krohnkite: Shrink Height
+KrohnkiteShrinkWidth=Meta+Ctrl+H,none,Krohnkite: Shrink Width
+KrohnkiteSpiralLayout=none,none,Krohnkite: Spiral Layout
+KrohnkiteSpreadLayout=none,none,Krohnkite: Spread Layout
+KrohnkiteStackedLayout=none,none,Krohnkite: Stacked Layout
+KrohnkiteStairLayout=none,none,Krohnkite: Stair Layout
+KrohnkiteTileLayout=none,none,Krohnkite: Tile Layout
+KrohnkiteToggleFloat=Meta+F,none,Krohnkite: Toggle Float
+KrohnkiteTreeColumnLayout=none,none,Krohnkite: Three Column Layout
+KrohnkitegrowWidth=Meta+Ctrl+L,none,Krohnkite: Grow Width
+KrohnkitetoggleDock=none,none,Krohnkite: Toggle Dock
+Move Tablet to Next LogicalOutput=none,none,Move the tablet to the next output
+Move Tablet to Next Output=none,none,Move the tablet to the next output
+MoveMouseToCenter=Meta+F6,Meta+F6,Move Mouse to Center
+MoveMouseToFocus=Meta+F5,Meta+F5,Move Mouse to Focus
+MoveZoomDown=none,none,Böyümüş sahəni aşağı hərəkət etdirmək
+MoveZoomLeft=none,none,Move Zoomed Area to Left
+MoveZoomRight=none,none,Move Zoomed Area to Right
+MoveZoomUp=none,none,Böyümüş sahəni yuxarı hərəkət etdirmək
+Overview=Meta+W,Meta+W,Toggle Overview
+Setup Window Shortcut=none,none,Pəncərə Qısayolunu Qurmaq
+Show Desktop=Meta+D,Meta+D,İş masasına nəzər salın
+Suspend Compositing=none,none,Kompozit Effektləri Dayandırmaq
+Switch One Desktop Down=Meta+Ctrl+Down,Meta+Ctrl+Down,Bir İş masası aşağı keçmək
+Switch One Desktop Up=Meta+Ctrl+Up,Meta+Ctrl+Up,Bir İş masası yuxarı keçmək
+Switch One Desktop to the Left=Meta+Ctrl+Left,Meta+Ctrl+Left,Bir İş masası sola keçmək
+Switch One Desktop to the Right=Meta+Ctrl+Right,Meta+Ctrl+Right,Bir İş masası sağa keçmək
+Switch Window Down=Meta+Alt+Down,Meta+Alt+Down,Altdakı Pəncərəyə Keçmək
+Switch Window Left=Meta+Alt+Left,Meta+Alt+Left,Soldakı Pəncərəyə Keçmək
+Switch Window Right=Meta+Alt+Right,Meta+Alt+Right,Sağdakı Pəncərəyə Keçmək
+Switch Window Up=Meta+Alt+Up,Meta+Alt+Up,Üstdəki Pəncərəyə Keçmək
+Switch to Desktop 1=Ctrl+F1,Ctrl+F1\tMeta+F1,1 İş masasına keçid
+Switch to Desktop 10=none,none,10 İş masasına keçid
+Switch to Desktop 11=none,none,11 İş masasına keçid
+Switch to Desktop 12=none,none,12 İş masasına keçid
+Switch to Desktop 13=none,none,13 İş masasına keçid
+Switch to Desktop 14=none,none,14 İş masasına keçid
+Switch to Desktop 15=none,none,15 İş masasına keçid
+Switch to Desktop 16=none,none,16 İş masasına keçid
+Switch to Desktop 17=none,none,17 İş masasına keçid
+Switch to Desktop 18=none,none,18 İş masasına keçid
+Switch to Desktop 19=none,none,19 İş masasına keçid
+Switch to Desktop 2=Ctrl+F2,Ctrl+F2\tMeta+F2,2 İş masasına keçid
+Switch to Desktop 20=none,none,20 İş masasına keçid
+Switch to Desktop 21=none,none,21 İş masasına keçid
+Switch to Desktop 22=none,none,22 İş masasına keçid
+Switch to Desktop 23=none,none,23 İş masasına keçid
+Switch to Desktop 24=none,none,24 İş masasına keçid
+Switch to Desktop 25=none,none,25 İş masasına keçid
+Switch to Desktop 3=Ctrl+F3,Ctrl+F3\tMeta+F3,3 İş masasına keçid
+Switch to Desktop 4=Ctrl+F4,Ctrl+F4\tMeta+F4,4 İş masasına keçid
+Switch to Desktop 5=none,none,5 İş masasına keçid
+Switch to Desktop 6=none,none,6 İş masasına keçid
+Switch to Desktop 7=none,none,7 İş masasına keçid
+Switch to Desktop 8=none,none,8 İş masasına keçid
+Switch to Desktop 9=none,none,9 İş masasına keçid
+Switch to Next Desktop=none,none,Növbəti İŞ Masasına keçid
+Switch to Next Screen=none,none,Növbəti Ekrana Keçid
+Switch to Previous Desktop=none,none,Əvvəlki İş masasına keçid
+Switch to Previous Screen=none,none,Əvvəlki Ekrana Keçid
+Switch to Screen 0=none,none,0 ekranına keçid\s
+Switch to Screen 1=none,none,1 ekranına keçid\s
+Switch to Screen 2=none,none,2 ekranına keçid\s
+Switch to Screen 3=none,none,3 ekranına keçid\s
+Switch to Screen 4=none,none,4 ekranına keçid\s
+Switch to Screen 5=none,none,5 ekranına keçid\s
+Switch to Screen 6=none,none,6 ekranına keçid\s
+Switch to Screen 7=none,none,7 ekranına keçid\s
+Switch to Screen Above=none,none,Switch to Screen Above
+Switch to Screen Below=none,none,Switch to Screen Below
+Switch to Screen to the Left=none,none,Switch to Screen to the Left
+Switch to Screen to the Right=none,none,Switch to Screen to the Right
+Toggle Night Color=none,none,Suspend/Resume Night Light
+Toggle Window Raise/Lower=none,none,Pəncərəni endirmək/qaldərmaq
+Walk Through Windows=Alt+Tab\tMeta+Tab,Alt+Tab\tMeta+Tab,Pəncərələrdə İrəli Hərəkət
+Walk Through Windows (Reverse)=Alt+Shift+Tab\tMeta+Shift+Tab,Alt+Shift+Tab\tMeta+Shift+Tab,Pəncərələrdə Əksinə Hərəkət
+Walk Through Windows Alternative=none,none,Pəncərələrdə Alternativ Hərəkət
+Walk Through Windows Alternative (Reverse)=none,none,Pəncərələrdə Əksinə Alternativ Hərəkət
+Walk Through Windows of Current Application=Alt+`\tMeta+`,Alt+`\tMeta+`,Cari tətbiqin pəncərələrində hərəkət
+Walk Through Windows of Current Application (Reverse)=Alt+~\tMeta+~,Alt+~\tMeta+~,Cari tətbiqin pəncərələrində əksinə hərəkət
+Walk Through Windows of Current Application Alternative=none,none,Cari tətbiqin pəncərələrində alternativ hərəkət
+Walk Through Windows of Current Application Alternative (Reverse)=none,none,Cari tətbiqin pəncərələrində əksinə alternativ hərəkət
+Window Above Other Windows=none,none,Pəncərənin Digərilərinin Üzərində Tutmaq
+Window Below Other Windows=none,none,Pəncərəni Digərilərinin Altında Tutmaq
+Window Close=Alt+F4\tMeta+Q,Alt+F4,Pəncərəni Bağlamaq
+Window Custom Quick Tile Bottom=none,none,Custom Quick Tile Window to the Bottom
+Window Custom Quick Tile Left=none,none,Custom Quick Tile Window to the Left
+Window Custom Quick Tile Right=none,none,Custom Quick Tile Window to the Right
+Window Custom Quick Tile Top=none,none,Custom Quick Tile Window to the Top
+Window Fullscreen=none,none,Pəncərəni Tam Ekran Açmaq
+Window Grow Horizontal=none,none,Pəncərəni üfüqi açın
+Window Grow Vertical=none,none,Pəncərəni şaquli açın
+Window Lower=none,none,Pəncərəni Endirmək
+Window Maximize=Meta+PgUp,Meta+PgUp,Pəncərəni Böyütmək
+Window Maximize Horizontal=none,none,Pəncərəni Üfüqi Böyütmək
+Window Maximize Vertical=none,none,Pəncərəni Şaquli Böyütmək
+Window Minimize=Meta+PgDown,Meta+PgDown,Pəncərəni Yığmaq
+Window Move=none,none,Pəncərənin Yerini Dəyişmək
+Window Move Center=none,none,Pəncərəni küncə köçürün
+Window No Border=none,none,Toggle Window Titlebar and Frame
+Window On All Desktops=none,none,Pəncərəni Bütün İş Masalarında Saxlayın
+Window One Desktop Down=Meta+Ctrl+Shift+Down,Meta+Ctrl+Shift+Down,Pəncərəni Bir İş masası Aşağı köçürmək
+Window One Desktop Up=Meta+Ctrl+Shift+Up,Meta+Ctrl+Shift+Up,Pəncərəni Bir İş masası Yuxarı köçürmək
+Window One Desktop to the Left=Meta+Ctrl+Shift+Left,Meta+Ctrl+Shift+Left,Pəncərəni Bir İş masası Sola köçürmək
+Window One Desktop to the Right=Meta+Ctrl+Shift+Right,Meta+Ctrl+Shift+Right,Pəncərəni Bir İş masası Sağa köçürmək
+Window One Screen Down=none,none,Move Window One Screen Down
+Window One Screen Up=none,none,Move Window One Screen Up
+Window One Screen to the Left=none,none,Move Window One Screen to the Left
+Window One Screen to the Right=none,none,Move Window One Screen to the Right
+Window Operations Menu=Alt+F3,Alt+F3,Window Menu
+Window Pack Down=none,none,Pəncərəni aşağı köçürün
+Window Pack Left=none,none,Pəncərəni sola köçürün
+Window Pack Right=none,none,Pəncərəni sağa köçürün
+Window Pack Up=none,none,Pəncərəni yuxarı köçürün
+Window Quick Tile Bottom=Meta+Down,Meta+Down,Pəncərəni Ekranın Aşağı Yarısı Qədər Açmaq
+Window Quick Tile Bottom Left=none,none,Pəncərəni Ekranın Sol Aşağı Dörddə Biri Qədər Açmaq
+Window Quick Tile Bottom Right=none,none,Pəncərəni Ekranın Sağ Aşağı Dörddə Biri Qədər Açmaq
+Window Quick Tile Left=Meta+Left,Meta+Left,Pəncərəni Ekranın Sol Yarısı Qədər Açmaq
+Window Quick Tile Right=Meta+Right,Meta+Right,Pəncərəni Ekranın Sağ Yarısı Qədər Açmaq
+Window Quick Tile Top=Meta+Up,Meta+Up,Pəncərəni Ekranın Yuxarı Yarısı Qədər Açmaq
+Window Quick Tile Top Left=none,none,Pəncərəni Ekranın Sol Yuxarı Dörddə Biri Qədər Açmaq
+Window Quick Tile Top Right=none,none,Pəncərəni Ekranın Sağ Yuxarı Dörddə Biri Qədər Açmaq
+Window Raise=none,none,Pəncərəni Qaldırmaq
+Window Resize=none,none,Pəncərənin Ölçüsünü Dəyişmək
+Window Restore=Meta+Backspace,Meta+Backspace,Restore Window
+Window Shade=none,none,Pəncərəni Başlığa Yığmaq
+Window Shrink Horizontal=none,none,Pəncərəni üfüqi yığın
+Window Shrink Vertical=none,none,Pəncərəni şaquli yığın
+Window to Desktop 1=none,none,Pəncərəni 1 İş masasına köçürmək
+Window to Desktop 10=none,none,Pəncərəni 10 İş masasına köçürmək
+Window to Desktop 11=none,none,Pəncərəni 11 İş masasına köçürmək
+Window to Desktop 12=none,none,Pəncərəni 12 İş masasına köçürmək
+Window to Desktop 13=none,none,Pəncərəni 13 İş masasına köçürmək
+Window to Desktop 14=none,none,Pəncərəni 14 İş masasına köçürmək
+Window to Desktop 15=none,none,Pəncərəni 15 İş masasına köçürmək
+Window to Desktop 16=none,none,Pəncərəni 16 İş masasına köçürmək
+Window to Desktop 17=none,none,Pəncərəni 17 İş masasına köçürmək
+Window to Desktop 18=none,none,Pəncərəni 18 İş masasına köçürmək
+Window to Desktop 19=none,none,Pəncərəni 19 İş masasına köçürmək
+Window to Desktop 2=none,none,Pəncərəni 2 İş masasına köçürmək
+Window to Desktop 20=none,none,Pəncərəni 20 İş masasına köçürmək
+Window to Desktop 21=none,none,Pəncərəni 21 İş masasına köçürmək
+Window to Desktop 22=none,none,Pəncərəni 22 İş masasına köçürmək
+Window to Desktop 23=none,none,Pəncərəni 23 İş masasına köçürmək
+Window to Desktop 24=none,none,Pəncərəni 24 İş masasına köçürmək
+Window to Desktop 25=none,none,Pəncərəni 25 İş masasına köçürmək
+Window to Desktop 3=none,none,Pəncərəni 3 İş masasına köçürmək
+Window to Desktop 4=none,none,Pəncərəni 4 İş masasına köçürmək
+Window to Desktop 5=none,none,Pəncərəni 5 İş masasına köçürmək
+Window to Desktop 6=none,none,Pəncərəni 6 İş masasına köçürmək
+Window to Desktop 7=none,none,Pəncərəni 7 İş masasına köçürmək
+Window to Desktop 8=none,none,Pəncərəni 8 İş masasına köçürmək
+Window to Desktop 9=none,none,Pəncərəni 9 İş masasına köçürmək
+Window to Next Desktop=none,none,Pəncərəni Növbəti İş masasına köçürmək
+Window to Next Screen=Meta+Shift+Right,Meta+Shift+Right,Move Window to Next Screen
+Window to Previous Desktop=none,none,Pəncərəni Əvvəlki İş masasına köçürmək
+Window to Previous Screen=Meta+Shift+Left,Meta+Shift+Left,Move Window to Previous Screen
+Window to Screen 0=none,none,Move Window to Screen 0
+Window to Screen 1=none,none,Move Window to Screen 1
+Window to Screen 2=none,none,Move Window to Screen 2
+Window to Screen 3=none,none,Move Window to Screen 3
+Window to Screen 4=none,none,Move Window to Screen 4
+Window to Screen 5=none,none,Move Window to Screen 5
+Window to Screen 6=none,none,Move Window to Screen 6
+Window to Screen 7=none,none,Move Window to Screen 7
+_k_friendly_name=KWin
+disableInputCapture=Meta+Shift+Esc,Meta+Shift+Esc,Disable Active Input Capture
+view_actual_size=Meta+0,Meta+0,Zoom to Actual Size
+view_zoom_in=Meta++\tMeta+=,Meta++\tMeta+=,Zoom In
+view_zoom_out=Meta+-,Meta+-,Zoom Out
+
+[mediacontrol]
+_k_friendly_name=Media oynadıcı idarəetməsi
+mediavolumedown=none,none,Səsi azaltmaq
+mediavolumeup=none,none,Səsi ucaltmaq
+nextmedia=Media Next,Media Next,Sonrakı cığıra keçmək
+pausemedia=Media Pause,Media Pause,Fasilə vermək
+playmedia=none,none,Başlatmaq
+playpausemedia=Media Play,Media Play,Başlatmaq və ya fasilə etmək
+previousmedia=Media Previous,Media Previous,Əvvəlki cığıra keçmək
+seekbackwardmedia=Media Rewind,Media Rewind,Media playback seek backward 5s
+seekbackwardmedialong=none,none,Media playback seek backward 30s
+seekforwardmedia=Media Fast Forward,Media Fast Forward,Media playback seek forward 5s
+seekforwardmedialong=none,none,Media playback seek forward 30s
+stopmedia=Media Stop,Media Stop,Dayandırmaq
+
+[org_kde_powerdevil]
+Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Klaviatura işıqlanmasını azaltmaq
+Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Ekranın Parlaqlığını Azaltmaq
+Decrease Screen Brightness Small=Shift+Monitor Brightness Down,Shift+Monitor Brightness Down,Ekranın parlaqlığını 1% azaldın
+Hibernate=Hibernate,Hibernate,Gözləmə
+Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Klaviatura işıqlanmasını artırmaq
+Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Ekranın Parlaqlığını Artırmaq
+Increase Screen Brightness Small=Shift+Monitor Brightness Up,Shift+Monitor Brightness Up,Ekranın parlaqlığını 1% artırın
+PowerDown=Power Down,Power Down,Qida mənbəyini ayırmaq
+PowerOff=Power Off,Power Off,Söndürün
+Sleep=Sleep,Sleep,Dayandırmaq
+Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Klaviatura işıqlarını söndürmək/açın
+Turn Off Screen=none,none,Ekranı söndürmək
+_k_friendly_name=Enerjiyə Nəzarət
+powerProfile=Battery\tMeta+B,Battery\tMeta+B,Güc profilinə keçid
+
+[plasmashell]
+Slideshow Wallpaper Next Image=none,none,Növbəti divar kağızı
+_k_friendly_name=plasmashell
+activate application launcher=Alt+F1,Meta\tAlt+F1,Tətbiq başladıcını aktiv etmək
+activate task manager entry 1=Meta+1,Meta+1,Tapşırıq Panelində 1 açmaq
+activate task manager entry 10=none,none,Tapşırıq Panelində 10 açmaq
+activate task manager entry 2=Meta+2,Meta+2,Tapşırıq Panelində 2 açmaq
+activate task manager entry 3=Meta+3,Meta+3,Tapşırıq Panelində 3 açmaq
+activate task manager entry 4=Meta+4,Meta+4,Tapşırıq Panelində 4 açmaq
+activate task manager entry 5=Meta+5,Meta+5,Tapşırıq Panelində 5 açmaq
+activate task manager entry 6=Meta+6,Meta+6,Tapşırıq Panelində 6 açmaq
+activate task manager entry 7=Meta+7,Meta+7,Tapşırıq Panelində 7 açmaq
+activate task manager entry 8=Meta+8,Meta+8,Tapşırıq Panelində 8 açmaq
+activate task manager entry 9=Meta+9,Meta+9,Tapşırıq Panelində 9 açmaq
+activate widget 16=Meta+Shift+W,none,Hava məlumatı Vidjetin aktiv edilməsi
+activate widget 29=none,none,Activate Fuzzy Clock Widget
+activate widget 32=none,none,Activate System Monitor Widget
+activate widget 36=none,none,Activate Application Launcher Widget
+clear history=none,none,Clear Notification History
+clear-history=none,none,Mübadilə tarixçəsini təmizləyin
+clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Avtomatik fəaliyyət açılan menyusu
+cycle-panels=Meta+Alt+P,Meta+Alt+P,Klaviatura fokusunu panellər arasında dəyişmək
+cycleNextAction=none,none,Tarixçənin növbəti elementi
+cyclePrevAction=none,none,Tarixçənin əvvəlki elementi
+edit_clipboard=none,none,Tərkiblərinə düzəliş edin...
+manage activities=Meta+Shift+Q,Meta+Q,Otaq dəyişdiricisi
+next activity=Meta+A,none,Sonrakı İş otağı
+previous activity=Meta+Shift+A,none,Əvvəlki İş otağı
+repeat_action=none,none,Fəaliyyəti cari mübadilə buferinə özünüz çağırın
+show dashboard=Ctrl+F12,Ctrl+F12,İş masasını Göstərmək
+show-barcode=none,none,Barkodu göstərmək...
+show-on-mouse-pos=Meta+V,Meta+V,Kursorun altında mübadilə yaddaşı elementlərini göstərmək
+switch to next activity=none,none,Növbəti İş otağına Keçid
+switch to previous activity=none,none,Əvvəlki İş otağına Keçid
+toggle do not disturb=none,none,Narahat etməmək rejimini dəyişmək
+
+[services][org.kde.kalk.desktop]
+_launch=Calculator
+
+[services][org.kde.konsole.desktop]
+_launch=Meta+Return
+
+[services][org.kde.krunner.desktop]
+_launch=Meta\tSearch\tAlt+Space
+
+[services][org.kde.spectacle.desktop]
+CurrentMonitorScreenShot=none
+OpenWithoutScreenshot=none
+
+[services][systemsettings.desktop]
+_launch=\tTools
+
+[slack]
+A5FE6D6B81B4729964A19E050E5C9B78-Ctrl+Shift+Space=Ctrl+Shift+Space,Ctrl+Shift+Space,Slack shortcut: Ctrl+Shift+Space
+_k_friendly_name=Slack
+
+[wacomtablet]
+Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen
+Map to screen 1=Meta+Ctrl+1,Meta+Ctrl+1,Map to screen 1
+Map to screen 2=Meta+Ctrl+2,Meta+Ctrl+2,Map to screen 2
+Next Profile=Meta+Ctrl+N,Meta+Ctrl+N,Next profile
+Previous Profile=Meta+Ctrl+P,Meta+Ctrl+P,Previous Profile
+Toggle screen map selection=Meta+Ctrl+M,Meta+Ctrl+M,Toggle between all screens
+Toggle stylus mode=Meta+Ctrl+S,Meta+Ctrl+S,Toggle the Stylus Tool Relative/Absolute
+Toggle touch tool=Meta+Ctrl+T,Meta+Ctrl+T,Enable/Disable the Touch Tool
+_k_friendly_name=Wacom Tablet
