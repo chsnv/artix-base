@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# artix-base — Phase 2: KDE Plasma desktop (matches chsnv's current system).
+# artix-base — Phase 2 (KDE): KDE Plasma desktop (matches chsnv's current system).
 # Copyright (c) 2025 Cosqun Hesenov.  MIT licensed (see LICENSE).
 #
 # Run AFTER the first boot into the base system, logged in as your user
@@ -8,7 +8,7 @@
 # and enables the system services captured from the live machine.
 
 REPO="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
-DESKTOP="$REPO/packages/desktop.txt"
+DESKTOP="$REPO/packages/kde.txt"
 SERVICES="$REPO/packages/services-openrc.txt"
 
 [ -f "$DESKTOP" ] || { printf 'tapılmadı: %s\n' "$DESKTOP" >&2; exit 1; }

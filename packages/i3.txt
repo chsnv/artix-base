@@ -1,0 +1,44 @@
+# i3 window manager stack (X11). Restore configs with src/i3wm.sh.
+# --- WM core ---
+i3-wm
+i3status
+i3blocks
+i3lock
+dmenu
+j4-dmenu-desktop
+polybar
+# --- X session + utilities ---
+xorg-server
+xorg-xinit
+xorg-setxkbmap
+xorg-xset
+xorg-xbacklight
+xss-lock
+picom
+dex
+network-manager-applet
+# --- screenshot / clipboard ---
+maim
+xdotool
+xclip
+# --- audio + volume ---
+pipewire
+pipewire-pulse
+wireplumber
+alsa-utils
+pavucontrol
+# --- polybar module deps ---
+pacman-contrib
+lm_sensors
+mpd
+# --- fonts (Font Awesome, DejaVu, Ubuntu, misc "fixed") ---
+ttf-font-awesome
+ttf-dejavu
+ttf-ubuntu-font-family
+xorg-fonts-misc
+# --- terminal + files ---
+xterm
+nemo
+#
+# AUR extras (config references these; install via yay):
+#   nitrogen  i3lock-fancy  siji-git   (siji-git is already in packages/aur.txt)

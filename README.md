@@ -6,7 +6,7 @@ btrfs `@`/`@home`/`@var` · linux-zen + linux-lts · UEFI GRUB · KDE Plasma · 
 | # | Script | What |
 |---|---|---|
 | 1 · base | `install.sh` | partition · mount · basestrap · fstab · bootloader · user |
-| 2 · desktop | `src/desktop.sh` | `packages/desktop.txt` · PipeWire · services |
+| 2 · desktop | `src/kde.sh` · `src/i3wm.sh` | KDE Plasma or i3 (packages + configs) |
 | 3 · AUR | `src/aur.sh` | `yay` + `packages/aur.txt` |
 | 4 · dotfiles | `src/dotfiles.sh` | zsh + KDE config (secrets scrubbed) |
 | 5 · snapshots | `src/snapshots.sh` | snapper + snap-pac + grub-btrfs |
@@ -46,7 +46,7 @@ cd artix-base && ./install.sh
 Log in as your user (not root):
 ```sh
 cd artix-base
-./src/desktop.sh           # KDE Plasma + PipeWire + services
+./src/kde.sh               # KDE Plasma   (or ./src/i3wm.sh for i3 + polybar)
 ./src/aur.sh               # yay + AUR packages
 ./src/dotfiles.sh restore  # zsh + KDE config
 ./src/snapshots.sh         # snapper + grub-btrfs
@@ -58,7 +58,8 @@ cd artix-base
 
 ## Package lists
 
-From the real machine: `desktop.txt` (`pacman -Qqen`), `aur.txt` (`-Qqem`),
+From the real machine: `kde.txt` (`pacman -Qqen`), `aur.txt` (`-Qqem`),
 `services-openrc.txt` (enabled services), `dotfiles.list` (tracked configs).
+i3: `i3.txt` + `config/i3` + `config/polybar` (custom, vendored).
 
 MIT © 2025 Cosqun Hesenov
